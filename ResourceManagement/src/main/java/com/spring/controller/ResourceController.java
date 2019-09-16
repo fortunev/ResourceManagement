@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.spring.model.Project;
+import com.spring.model.Project_Resource;
 import com.spring.model.Resource;
 import com.spring.service.ResourceService;
 
@@ -61,8 +62,8 @@ public class ResourceController {
 	   
 	   /*---get all resources from project id---*/
 	   @GetMapping("/project/{id}")
-	   public ResponseEntity<List<Resource>> listResources_ProjId(@PathVariable("id") int p_id) {	   
-	      List<Resource> resources = resourceService.list_proj_id(p_id);
+	   public ResponseEntity<List<Project_Resource>> listResources_ProjId(@PathVariable("id") int p_id) {	   
+	      List<Project_Resource> resources = resourceService.list_proj_id(p_id);
 	      return ResponseEntity.ok().body(resources);
 	   }
 
@@ -80,5 +81,10 @@ public class ResourceController {
 		   return ResponseEntity.ok().body("Resource has been deleted successfully.");
 	   }
 	   
-	   
+	   /*---Delete a resource by id from project id---*/
+	   @DeleteMapping("/project/{p_id}/resource/{r_id}")
+	   public ResponseEntity<?> deleteResource(@PathVariable("p_id") int p_id, @PathVariable("r_id") int r_id) {
+		   resourceService.delete(p_id, r_id);
+		   return ResponseEntity.ok().body("Resource has been deleted successfully.");
+	   }
 }

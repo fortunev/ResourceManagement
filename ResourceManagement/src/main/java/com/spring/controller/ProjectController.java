@@ -31,13 +31,6 @@ public class ProjectController {
 	      return ResponseEntity.ok().body("New Project has been saved with ID:" + id);
 	   }
 
-	   /*---Get a project by id---*/
-	   /*@GetMapping("/project/{id}")
-	   public ResponseEntity<Project> getProject(@PathVariable("id") int id) {
-		  Project project = projectService.get(id);
-	      return ResponseEntity.ok().body(project);
-	   }*/
-
 	   /*---get all projects---*/
 	   @GetMapping("/project")
 	   public ResponseEntity<List<Project>> listProjects() {

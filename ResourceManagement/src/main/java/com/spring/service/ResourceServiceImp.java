@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.dao.ResourceDAO;
+import com.spring.model.Project_Resource;
 import com.spring.model.Resource;
 
 @Service
@@ -34,7 +35,7 @@ public class ResourceServiceImp implements ResourceService {
 		return resDao.list();
 	}
 	
-	public List<Resource> list_proj_id(int p_id) {
+	public List<Project_Resource> list_proj_id(int p_id) {
 		return resDao.list_proj_id(p_id);
 	}
 	
@@ -46,5 +47,10 @@ public class ResourceServiceImp implements ResourceService {
 	@Transactional
 	public void delete(int id) {
 		resDao.delete(id);
+	}
+	
+	@Transactional
+	public void delete(int p_id, int id) {
+		resDao.delete(p_id, id);
 	}
 }
