@@ -15,4 +15,5 @@ public interface CellService {
     List<Cell> list_column_id(int col_id); 
     void update(int cell_id, Cell col);
     void delete(int cell_id);
+    List<Integer> list_column_id_resource_id(int c_id, int r_id);
 }

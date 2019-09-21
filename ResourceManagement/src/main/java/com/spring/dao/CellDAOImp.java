@@ -17,6 +17,7 @@ import org.springframework.stereotype.Repository;
 import com.spring.model.Columns;
 import com.spring.model.Cell;
 import com.spring.model.Project;
+import com.spring.model.Project_Resource;
 import com.spring.model.Resource;
 
 @Repository
@@ -106,6 +107,26 @@ public class CellDAOImp implements CellDAO{
 	    l.addAll(col.getCellsSet());
 	    return l;
 	}
+	
+	public List<Integer> list_column_id_resource_id(int c_id, int r_id) {
+		Session session = sessionFactory.getCurrentSession();
+//	    Query<?> query1 = session.createQuery("FROM Columns as c WHERE c.colId="+c_id);	    
+//	    Query<?> query2 = session.createQuery("FROM Resource as r WHERE r.resourceId="+r_id);
+//	    Query<?> query3 = session.createSQLQuery("Select cellId, value from Cell as c WHERE c.colId_FK="+c_id+" and c.resourceId_FK="+r_id);
+//	    Columns col = (Columns) query1.uniqueResult();
+//	    Resource res = (Resource) query2.uniqueResult();
+//	    List<Cell> l1 = new ArrayList<Cell>();
+//	    l1.addAll(col.getCellsSet());
+//	    List<Cell> l2 = new ArrayList<Cell>();
+//	    l2.addAll(res.getCellsSet());
+//	    Cell cell = (Cell) query3.uniqueResult();	    
+//	    return cell.getCellId();
+	    Query query = session.createQuery("FROM Cell as c WHERE c.resourceId="+r_id+" and c.colId="+c_id);	    
+	    Cell cel = (Cell) query.uniqueResult();
+	    List<Integer> l = new ArrayList<Integer>();
+	    l.add(cel.getCellId());
+	    return l;
+	}	
 
 	public void update(int cell_id, Cell col) {
 		Session ses = sessionFactory.getCurrentSession();
@@ -124,4 +145,6 @@ public class CellDAOImp implements CellDAO{
 		ses.delete(cell);		
 		ses.flush();
 	}
+
+
 }

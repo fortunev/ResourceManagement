@@ -18,6 +18,10 @@ import com.spring.model.Resource;
 public class CellServiceImp implements CellService {
 	@Autowired
 	private CellDAO cellDao;
+
+	public List<Integer> list_column_id_resource_id(int c_id, int r_id) {
+		return cellDao.list_column_id_resource_id(c_id, r_id);
+	}
 	
 	@Transactional
 	public long save(Cell cell, int col_id, int r_id) {
@@ -64,4 +68,5 @@ public class CellServiceImp implements CellService {
 	public void delete(int cell_id) {
 		cellDao.delete(cell_id);
 	}
+
 }

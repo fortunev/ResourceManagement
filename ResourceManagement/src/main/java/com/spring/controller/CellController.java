@@ -77,7 +77,14 @@ public class CellController {
 	      List<Cell> cells = cellService.list_column_id(c_id);
 	      return ResponseEntity.ok().body(cells);
 	   }
-	  
+	   
+	   /*---get cell by col id and res id---*/
+	   @GetMapping("/column/{c_id}/resource/{r_id}/cell")
+	   public ResponseEntity<?> list_column_id_resource_id(@PathVariable("c_id") int c_id, @PathVariable("r_id") int r_id) {
+		  List<Integer> cell = cellService.list_column_id_resource_id(c_id, r_id);
+	      return ResponseEntity.ok().body("Cell ID"+ cell);
+	   }
+	   
 	   /*---Update a cell by id---*/
 	   @PutMapping("/cell/{id}")
 	   public ResponseEntity<?> update(@PathVariable("id") int id, @RequestBody Cell c) {
