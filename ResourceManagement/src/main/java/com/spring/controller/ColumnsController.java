@@ -25,7 +25,7 @@ public class ColumnsController {
 	   @PostMapping("/project/{p_id}/column")
 	   public ResponseEntity<?> save(@PathVariable("p_id") int p_id, @RequestBody Columns col) {
 	      long id = colService.save(col, p_id);
-	      return ResponseEntity.ok().body("New Column has been saved with ID:" + id);
+	      return ResponseEntity.ok().body(id);
 	   }
 	      
 	   /*---Add column to project---*/
